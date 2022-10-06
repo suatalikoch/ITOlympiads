@@ -7,29 +7,20 @@ namespace Polynomials
     {
         static void Main(string[] args)
         {
-            Monomial a = new Monomial(4, new List<Variable>()
-            { 
-                new Variable('x', 5),
-                new Variable('y', 4)
-            });
-
-            Monomial b = new Monomial(6, new List<Variable>() 
-            { 
-                new Variable('z', 3) 
-            });
-
-            Monomial c = new Monomial(9, new List<Variable>() 
+            Monomial a1 = new Monomial(2, new List<Variable>()
             {
-                new Variable('q', 2) 
+                new Variable('x', 3),
+                new Variable('y', 2)
             });
 
-            Monomial d = new Monomial(7, new List<Variable>()
-            { 
-                new Variable('r', 1) 
+            Monomial a2 = new Monomial(3, new List<Variable>()
+            {
+                new Variable('x', 3),
+                new Variable('y', 2)
             });
 
-            Console.WriteLine(PolynomialMath.Add(new Polynomial(a, b), new Polynomial(c, d)));
-            Console.WriteLine(PolynomialMath.Substract(new Polynomial(a, b), new Polynomial(c, d)));
+            Console.WriteLine(PolynomialMath.Add(new Polynomial(a1), new Polynomial(a2)));
+            Console.WriteLine(PolynomialMath.Substract(new Polynomial(a1), new Polynomial(a2)));
             //- Console.WriteLine(PolynomialMath.Multiply(new Polynomial(a, b), new Polynomial(c, d)));
             //- Console.WriteLine(PolynomialMath.Divide(new Polynomial(a, b), new Polynomial(c, d)));
         }

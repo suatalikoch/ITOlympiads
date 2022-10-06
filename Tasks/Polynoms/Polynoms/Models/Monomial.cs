@@ -12,7 +12,11 @@ namespace Polynoms.Models
 
         private List<Variable> _variables;
 
-        private int _exponent;
+        private int _totalExponent;
+
+        public Monomial(double coefficient)
+            : this(coefficient, null)
+        { }
 
         public Monomial(List<Variable> variables)
             : this(1, variables)
@@ -22,21 +26,32 @@ namespace Polynoms.Models
         {
             Coefficient = coefficient;
             Variables = variables;
+
+            CTotalExponent();
         }
 
-        public void TotalExponent()
+        public void CTotalExponent()
         {
-            Exponent = 0;
+            TotalExponent = 0;
 
             foreach (Variable variable in Variables)
             {
-                Exponent += variable.Exponent;
+                TotalExponent += variable.Exponent;
             }
         } 
 
         public override string ToString()
         {
-            return $"{Coefficient}{string.Join("", Variables)}";
+            if (Coefficient == 0)
+            {
+                return string.Empty;
+            }
+            else if (Coefficient > 0)
+            {
+                return $"+{Coefficient}{string.Join("", Variables)}";
+            }
+
+            return $"-{Coefficient}{string.Join("", Variables)}";
         }
 
         public double Coefficient
@@ -51,7 +66,10 @@ namespace Polynoms.Models
             set { _variables = value; }
         }
 
-        public int Exponent { get => _exponent; 
-            private set => _exponent = value; }
+        public int TotalExponent
+        {
+            get => _totalExponent; 
+            private set => _totalExponent = value; 
+        }
     }
 }

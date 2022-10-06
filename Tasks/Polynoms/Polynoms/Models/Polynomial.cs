@@ -25,27 +25,12 @@ namespace Polynoms.Models
 
         public void SortByExponent()
         {
-            //- Monomials = Monomials.OrderByDescending(x => x.Variables.Max(y => y.Exponent)).ToList();
-            Monomials = Monomials.OrderByDescending(x => x.Exponent).ToList();
+            Monomials = Monomials.OrderByDescending(x => x.TotalExponent).ToList();
         }
 
         public override string ToString()
         {
-            string polynomial = string.Empty;
-
-            foreach (Monomial monomial in Monomials)
-            {
-                if (monomial.Coefficient >= 0)
-                {
-                    polynomial += $"+{monomial}";
-                }
-                else
-                {
-                    polynomial += monomial;
-                }
-            }
-
-            return polynomial;
+            return string.Join("", Monomials);
         }
 
         public int Remainder
