@@ -42,7 +42,7 @@ namespace Polynoms.Libraries
         }
         */
 
-        public static Polynomial Add(Polynomial a, Polynomial b)
+        public static Polynomial Add(Polynomial a, Polynomial b) ///Sorted
         {
             Polynomial polynomial = new Polynomial();
 
@@ -50,12 +50,41 @@ namespace Polynoms.Libraries
             {
                 for (int j = 0; j < b.Monomials.Count; j++)
                 {
-                    
-                    
-                    
-                    
-                    
-                   
+                    if (CompareMonomialExponent(a.Monomials[i], b.Monomials[j] == 0))
+                    {
+                        if (CanAddMonomial(a.Monomials[i], b.Monomials[j]))
+                        {
+                            polynomial.Monomials.Add(new Monomial(a.Monomials[i].Coefficient + b.Monomials[j].Coefficient), a.Monomials[i].Variables);
+                        }
+                        else
+                        {
+                            if(a.Monomials[i].Variables.Length > b.Monomials[j].Variables.Length)
+                            {
+                                // b a
+                                polynomial.Monomials.Add(b.Monomials[j]);
+                                polynomial.Monomials.Add(a.Monomials[i]);
+                                polynomial.Monomials.Add(new Monomial(a.Monomials[i].Coefficient + b.Monomials[j].Coefficient), a.Monomials[i].Variables);
+                            }
+                            else
+                            {
+                                // a b
+                            }
+                        }
+                        
+                    }
+                    else if (CompareMonomialExponent(a.Monomials[i], b.Monomials[j] == 1))
+                    {
+
+                    }
+                    else //=-1
+                    {
+
+                    }
+
+
+
+
+
                     if (CanAddMonomial(polynomial.Monomials[i], polynomial.Monomials[j]))
                     {
                         polynomial.Monomials[i] = new Monomial(polynomial.Monomials[i].Coefficient + polynomial.Monomials[j].Coefficient, polynomial.Monomials[i].Variables);
@@ -137,18 +166,21 @@ namespace Polynoms.Libraries
 
             return polynomial;
         }
-
+        public static int CompareMonomialExponent(Monomial a, Monomial b)
+        {
+            return a.Exponent.CompareTo(b.Exponent);
+        }
         public static Polynomial Divide(Polynomial a, Polynomial b)
         {
             return new Polynomial();
         }
 
-        public static Polynomial Rationalize(Polynomial a)
+        public static Polynomial Simplify(Polynomial a)
         {
             return new Polynomial();
         }
 
-        public static Polynomial DefinitionSet(Polynomial a)
+        public static Polynomial DefinitionSet(Polynomial a) //Definicionno mnojestvo
         {
             return new Polynomial();
         }
