@@ -116,24 +116,6 @@ namespace Polynoms.Libraries
             return true;
         }
 
-        private static bool AreValueLettersSame(Monomial a, Monomial b)
-        {
-            if (a.Variables.Count != b.Variables.Count)
-            {
-                return false;
-            }
-
-            foreach (Variable variable in a.Variables)
-            {
-                if (!b.Variables.Contains(variable))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
         private static bool CanDivideMonomial(Monomial a, Monomial b)
         {
             return false;
