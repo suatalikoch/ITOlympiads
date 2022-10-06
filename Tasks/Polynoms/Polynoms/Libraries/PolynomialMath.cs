@@ -9,6 +9,7 @@ namespace Polynoms.Libraries
 {
     internal static class PolynomialMath
     {
+        /*
         public static Polynomial Add(Polynomial a, Polynomial b)
         {
             Polynomial polynomial = new Polynomial();
@@ -25,6 +26,36 @@ namespace Polynoms.Libraries
                         continue;
                     }
 
+                    if (CanAddMonomial(polynomial.Monomials[i], polynomial.Monomials[j]))
+                    {
+                        polynomial.Monomials[i] = new Monomial(polynomial.Monomials[i].Coefficient + polynomial.Monomials[j].Coefficient, polynomial.Monomials[i].Variables);
+                        polynomial.Monomials.RemoveAt(j);
+
+                        j--;
+                    }
+                }
+            }
+
+            polynomial.SortByExponent();
+
+            return polynomial;
+        }
+        */
+
+        public static Polynomial Add(Polynomial a, Polynomial b)
+        {
+            Polynomial polynomial = new Polynomial();
+
+            for (int i = 0; i < a.Monomials.Count; i++)
+            {
+                for (int j = 0; j < b.Monomials.Count; j++)
+                {
+                    
+                    
+                    
+                    
+                    
+                   
                     if (CanAddMonomial(polynomial.Monomials[i], polynomial.Monomials[j]))
                     {
                         polynomial.Monomials[i] = new Monomial(polynomial.Monomials[i].Coefficient + polynomial.Monomials[j].Coefficient, polynomial.Monomials[i].Variables);

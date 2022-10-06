@@ -9,15 +9,24 @@ namespace Polynoms.Models
     internal class Polynomial
     {
         private List<Monomial> _monomials;
+        private int _remainder;
 
         public Polynomial(params Monomial[] monomials)
+            : this(0, monomials)
         {
+            Monomials = new List<Monomial>(monomials);
+        }
+
+        public Polynomial(int remainder, params Monomial[] monomials)
+        {
+            Remainder = remainder;
             Monomials = new List<Monomial>(monomials);
         }
 
         public void SortByExponent()
         {
-            Monomials = Monomials.OrderByDescending(x => x.Variables.Max(y => y.Exponent)).ToList();
+            //- Monomials = Monomials.OrderByDescending(x => x.Variables.Max(y => y.Exponent)).ToList();
+            Monomials = Monomials.OrderByDescending(x => x.Exponent).ToList();
         }
 
         public override string ToString()
@@ -37,6 +46,12 @@ namespace Polynoms.Models
             }
 
             return polynomial;
+        }
+
+        public int Remainder
+        {
+            get => _remainder;
+            set => _remainder = value;
         }
 
         public List<Monomial> Monomials

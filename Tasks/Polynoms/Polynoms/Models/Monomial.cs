@@ -12,15 +12,27 @@ namespace Polynoms.Models
 
         private List<Variable> _variables;
 
-        public Monomial(List<Variable> variable)
-            : this(1, variable)
+        private int _exponent;
+
+        public Monomial(List<Variable> variables)
+            : this(1, variables)
         { }
 
-        public Monomial(double coefficient, List<Variable> variable)
+        public Monomial(double coefficient, List<Variable> variables)
         {
             Coefficient = coefficient;
-            Variables = variable;
+            Variables = variables;
         }
+
+        public void TotalExponent()
+        {
+            Exponent = 0;
+
+            foreach (Variable variable in Variables)
+            {
+                Exponent += variable.Exponent;
+            }
+        } 
 
         public override string ToString()
         {
@@ -38,5 +50,8 @@ namespace Polynoms.Models
             get { return _variables; }
             set { _variables = value; }
         }
+
+        public int Exponent { get => _exponent; 
+            private set => _exponent = value; }
     }
 }
