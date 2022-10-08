@@ -51,7 +51,7 @@ namespace Polynoms.Models
                 return $"+{Coefficient}{string.Join("", Variables)}";
             }
 
-            return $"-{Coefficient}{string.Join("", Variables)}";
+            return $"{Coefficient}{string.Join("", Variables)}";
         }
 
         public double Coefficient

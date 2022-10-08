@@ -69,7 +69,20 @@ namespace Polynoms.Libraries
             {
                 foreach (Monomial monomialB in b.Monomials)
                 {
-                    //- Do something
+                    List<Variable> variables = new();
+
+                    foreach (Variable variableA in monomialA.Variables)
+                    {
+                        foreach (Variable variableB in monomialB.Variables)
+                        {
+                            if (variableA.Letter.Equals(variableB.Letter))
+                            {
+                                variables.Add(new Variable(variableA.Letter, variableA.Exponent + variableB.Exponent));  
+                            }
+                        }
+                    }
+
+                    polynomial.Monomials.Add(new Monomial(monomialA.Coefficient * monomialB.Coefficient, variables));
                 }
             }
 
@@ -80,7 +93,32 @@ namespace Polynoms.Libraries
 
         public static Polynomial Divide(Polynomial a, Polynomial b)
         {
-            return new Polynomial();
+            Polynomial polynomial = new();
+
+            foreach (Monomial monomialA in a.Monomials)
+            {
+                foreach (Monomial monomialB in b.Monomials)
+                {
+                    List<Variable> variables = new();
+
+                    foreach (Variable variableA in monomialA.Variables)
+                    {
+                        foreach (Variable variableB in monomialB.Variables)
+                        {
+                            if (variableA.Letter.Equals(variableB.Letter))
+                            {
+                                variables.Add(new Variable(variableA.Letter, variableA.Exponent - variableB.Exponent));
+                            }
+                        }
+                    }
+
+                    polynomial.Monomials.Add(new Monomial(Math.Round(monomialA.Coefficient / monomialB.Coefficient, 2), variables));
+                }
+            }
+
+            polynomial.SortByExponent();
+
+            return polynomial;
         }
 
         public static Polynomial Simplify(Polynomial a)
