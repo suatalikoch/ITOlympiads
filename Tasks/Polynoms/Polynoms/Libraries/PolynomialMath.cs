@@ -69,19 +69,20 @@ namespace Polynoms.Libraries
             {
                 foreach (Monomial monomialB in b.Monomials)
                 {
+                    //- Stores variables found only in monomialB
+                    Monomial temporary = new(monomialB.Coefficient, monomialB.Variables);
                     List<Variable> variables = new();
 
                     foreach (Variable variableA in monomialA.Variables)
                     {
-                        foreach (Variable variableB in monomialB.Variables)
-                        {
-                            if (variableA.Letter.Equals(variableB.Letter))
-                            {
-                                variables.Add(new Variable(variableA.Letter, variableA.Exponent + variableB.Exponent));  
-                            }
-                        }
+                        List<Variable> similarVariables = temporary.Variables.Where(x => x.Letter == variableA.Letter).ToList();
+                        temporary.Variables = temporary.Variables.Where(x => x.Letter != variableA.Letter).ToList();
+                        int exponent = similarVariables.Sum(x => x.Exponent);
+
+                        variables.Add(new Variable(variableA.Letter, variableA.Exponent + exponent));
                     }
 
+                    variables.AddRange(temporary.Variables);
                     polynomial.Monomials.Add(new Monomial(monomialA.Coefficient * monomialB.Coefficient, variables));
                 }
             }
@@ -126,14 +127,9 @@ namespace Polynoms.Libraries
             return new Polynomial();
         }
 
-        public static Polynomial DefinitionSet(Polynomial a) //Definicionno mnojestvo
+        public static Polynomial DefinitionSet(Polynomial a)
         {
             return new Polynomial();
-        }
-
-        public static int CompareMonomialExponent(Monomial a, Monomial b)
-        {
-            return a.TotalExponent.CompareTo(b.TotalExponent);
         }
 
         private static bool CanAddMonomial(Monomial a, Monomial b)

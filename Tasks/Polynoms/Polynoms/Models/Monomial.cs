@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Polynoms.Comparers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,23 +15,37 @@ namespace Polynoms.Models
 
         private int _totalExponent;
 
+        /// <summary>
+        /// Only Coefficient
+        /// </summary>
+        /// <param name="coefficient"></param>
         public Monomial(double coefficient)
-            : this(coefficient, null)
+            : this(coefficient, new List<Variable>())
         { }
 
+        /// <summary>
+        /// Only Variables
+        /// </summary>
+        /// <param name="variables"></param>
         public Monomial(List<Variable> variables)
             : this(1, variables)
         { }
 
+        /// <summary>
+        /// Full Monomial
+        /// </summary>
+        /// <param name="coefficient"></param>
+        /// <param name="variables"></param>
         public Monomial(double coefficient, List<Variable> variables)
         {
             Coefficient = coefficient;
             Variables = variables;
 
-            CTotalExponent();
+            CalculateTotalExponent();
+            SortByLetter();
         }
 
-        public void CTotalExponent()
+        private void CalculateTotalExponent()
         {
             TotalExponent = 0;
 
@@ -38,26 +53,57 @@ namespace Polynoms.Models
             {
                 TotalExponent += variable.Exponent;
             }
-        } 
+        }
+
+        private void SortByLetter()
+        {
+            Variables.Sort(new LetterComparer());
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (Coefficient != (obj as Monomial).Coefficient)
+            {
+                return false;
+            }
+
+            if (Variables.Count != (obj as Monomial).Variables.Count)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < (obj as Monomial).Variables.Count; i++)
+            {
+                if (!Variables.Contains((obj as Monomial).Variables[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         public override string ToString()
         {
-            if (Coefficient == 0)
+            switch (Coefficient)
             {
-                return string.Empty;
+                case 0:
+                    return string.Empty;
+                case 1:
+                    return $"+ {string.Join("", Variables)}";
+                case -1:
+                    return $"- {string.Join("", Variables)}";
+                case > 1:
+                    return $"+ {Coefficient}{string.Join("", Variables)}";
+                default:
+                    return $"- {Math.Abs(Coefficient)}{string.Join("", Variables)}";
             }
-            else if (Coefficient > 0)
-            {
-                return $"+{Coefficient}{string.Join("", Variables)}";
-            }
-
-            return $"{Coefficient}{string.Join("", Variables)}";
         }
 
         public double Coefficient
         {
             get { return _coefficient; }
-            set { _coefficient = value; }
+            private set { _coefficient = value; }
         }
 
         public List<Variable> Variables
@@ -68,8 +114,8 @@ namespace Polynoms.Models
 
         public int TotalExponent
         {
-            get => _totalExponent; 
-            private set => _totalExponent = value; 
+            get { return _totalExponent; } 
+            private set { _totalExponent = value; }
         }
     }
 }

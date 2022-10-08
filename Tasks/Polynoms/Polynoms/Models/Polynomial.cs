@@ -9,17 +9,9 @@ namespace Polynoms.Models
     internal class Polynomial
     {
         private List<Monomial> _monomials;
-        private int _remainder;
 
         public Polynomial(params Monomial[] monomials)
-            : this(0, monomials)
         {
-            Monomials = new List<Monomial>(monomials);
-        }
-
-        public Polynomial(int remainder, params Monomial[] monomials)
-        {
-            Remainder = remainder;
             Monomials = new List<Monomial>(monomials);
         }
 
@@ -30,19 +22,16 @@ namespace Polynoms.Models
 
         public override string ToString()
         {
-            return string.Join("", Monomials);
-        }
-
-        public int Remainder
-        {
-            get => _remainder;
-            set => _remainder = value;
+            return string.Join(" ", Monomials);
         }
 
         public List<Monomial> Monomials
         {
             get { return _monomials; }
-            private set { _monomials = value; }
+            private set
+            {
+                _monomials = value;
+            }
         }
     }
 }

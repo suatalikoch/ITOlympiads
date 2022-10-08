@@ -8,6 +8,105 @@
         Title="Calculator" Height="510" Width="336"
         WindowStartupLocation="CenterScreen">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <RichTextBox Grid.Row="0"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0"
+                        Grid.Column="0"
+                        Content="( )"/>
+                <Button Grid.Row="0"
+                        Grid.Column="1"
+                        Content=">"/>
+                <Button Grid.Row="0"
+                        Grid.Column="2"
+                        Content="7"/>
+                <Button Grid.Row="0"
+                        Grid.Column="3"
+                        Content="8"/>
+                <Button Grid.Row="0"
+                        Grid.Column="4"
+                        Content="9"/>
+                <Button Grid.Row="0"
+                        Grid.Column="5"
+                        Content="/"/>
+                <Button Grid.Row="1"
+                        Grid.Column="0"
+                        Content="-"/>
+                <Button Grid.Row="1"
+                        Grid.Column="1"
+                        Content="sqrt"/>
+                <Button Grid.Row="1"
+                        Grid.Column="2"
+                        Content="4"/>
+                <Button Grid.Row="1"
+                        Grid.Column="3"
+                        Content="5"/>
+                <Button Grid.Row="1"
+                        Grid.Column="4"
+                        Content="6"/>
+                <Button Grid.Row="1"
+                        Grid.Column="5"
+                        Content="x"/>
+                <Button Grid.Row="2"
+                        Grid.Column="0"
+                        Content="pow"/>
+                <Button Grid.Row="2"
+                        Grid.Column="1"
+                        Content="X"/>
+                <Button Grid.Row="2"
+                        Grid.Column="2"
+                        Content="1"/>
+                <Button Grid.Row="2"
+                        Grid.Column="3"
+                        Content="2"/>
+                <Button Grid.Row="2"
+                        Grid.Column="4"
+                        Content="3"/>
+                <Button Grid.Row="2"
+                        Grid.Column="5"
+                        Content="-"/>
+                <Button Grid.Row="3"
+                        Grid.Column="0"
+                        Content="PI"/>
+                <Button Grid.Row="3"
+                        Grid.Column="1"
+                        Content="%"/>
+                <Button Grid.Row="3"
+                        Grid.Column="2"
+                        Content="0"/>
+                <Button Grid.Row="3"
+                        Grid.Column="3"
+                        Content="."/>
+                <Button Grid.Row="3"
+                        Grid.Column="4"
+                        Content="="/>
+                <Button Grid.Row="3"
+                        Grid.Column="5"
+                        Content="+"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
